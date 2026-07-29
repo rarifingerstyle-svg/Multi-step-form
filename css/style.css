@@ -62,10 +62,10 @@ body {
 /* Screen Reader Only Utility Class */
 .sr-only {
   position: absolute;
-  width: 1px;
-  height: 1px;
+  width: 0.0625rem;
+  height: 0.0625rem;
   padding: 0;
-  margin: -1px;
+  margin: -0.0625rem;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
@@ -570,7 +570,7 @@ input:checked + .slider::before {
     justify-content: space-between;
   }
 
-  #info-form {
+  .info-form {
     display: flex;
     flex-direction: column;
     block-size: 100%;
@@ -600,12 +600,12 @@ input:checked + .slider::before {
    4. PREFERS-REDUCED-MOTION (Accessibility for Motion Sickness)
    ========================================================== */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  html body *,
+  html body *::before,
+  html body *::after {
+    animation-duration: 0.01ms;
+    animation-iteration-count: 1;
+    transition-duration: 0.01ms;
+    scroll-behavior: auto;
   }
 }
