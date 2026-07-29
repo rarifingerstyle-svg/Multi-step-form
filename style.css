@@ -573,10 +573,16 @@ input:checked + .slider::before {
     min-block-size: 100%;
   }
 
+  .form-step.is-active {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
   .info-form {
     display: flex;
     flex-direction: column;
-    block-size: 100%;
+    flex-grow: 1;
     justify-content: space-between;
   }
 
