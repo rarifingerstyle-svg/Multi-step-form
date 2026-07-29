@@ -42,8 +42,8 @@ Users should be able to:
 
 ### Links
 
-- **Solution URL (GitHub Repo):** [https://github.com/your-username/multi-step-form](https://github.com/your-username/multi-step-form)
-- **Live Site URL:** [https://your-username.github.io/multi-step-form](https://your-username.github.io/multi-step-form)
+- **Solution URL (GitHub Repo):** (https://github.com/rarifingerstyle-svg/Multi-step-form)
+- **Live Site URL:** (https://multi-step-form-two-sable.vercel.app)
 
 ---
 
