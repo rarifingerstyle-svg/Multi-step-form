@@ -19,14 +19,20 @@ const formData = {
 };
 
 // DOM Elements
-const btnNext = document.getElementById('btn-next');
-const btnBack = document.getElementById('btn-back');
-const navBar = document.querySelector('.footer-nav');
-const billingToggle = document.getElementById('billing-toggle');
-const btnChangePlan = document.getElementById('btn-change-plan');
+let btnNext;
+let btnBack;
+let navBar;
+let billingToggle;
+let btnChangePlan;
 
 // Init App
 document.addEventListener('DOMContentLoaded', () => {
+  btnNext = document.getElementById('btn-next');
+  btnBack = document.getElementById('btn-back');
+  navBar = document.querySelector('.footer-nav');
+  billingToggle = document.getElementById('billing-toggle');
+  btnChangePlan = document.getElementById('btn-change-plan');
+
   initStepNavigation();
   initPlanSelection();
   initAddonSelection();
@@ -43,7 +49,7 @@ function goToStep(targetStep) {
 
   // Update Sidebar Visuals
   document.querySelectorAll('.step-item').forEach(item => {
-    const stepNum = parseInt(item.getAttribute('data-step'));
+    const stepNum = parseInt(item.getAttribute('data-step'), 10);
     if (stepNum === formData.step || (formData.step === 5 && stepNum === 4)) {
       item.classList.add('is-active');
     } else {
@@ -55,7 +61,11 @@ function goToStep(targetStep) {
   document.querySelectorAll('.form-step').forEach(panel => {
     panel.classList.remove('is-active');
   });
-  document.querySelector('.form-step[data-step="' + formData.step + '"]').classList.add('is-active');
+  
+  const activePanel = document.querySelector(`.form-step[data-step="${formData.step}"]`);
+  if (activePanel) {
+    activePanel.classList.add('is-active');
+  }
 
   // Update Navigation Buttons
   if (formData.step === 1) {
@@ -78,17 +88,21 @@ function goToStep(targetStep) {
 }
 
 function initStepNavigation() {
-  btnNext.addEventListener('click', () => {
-    if (formData.step < 5) {
-      goToStep(formData.step + 1);
-    }
-  });
+  if (btnNext) {
+    btnNext.addEventListener('click', () => {
+      if (formData.step < 5) {
+        goToStep(formData.step + 1);
+      }
+    });
+  }
 
-  btnBack.addEventListener('click', () => {
-    if (formData.step > 1) {
-      goToStep(formData.step - 1);
-    }
-  });
+  if (btnBack) {
+    btnBack.addEventListener('click', () => {
+      if (formData.step > 1) {
+        goToStep(formData.step - 1);
+      }
+    });
+  }
 
   if (btnChangePlan) {
     btnChangePlan.addEventListener('click', () => {
@@ -108,7 +122,7 @@ function validateStep(step) {
   const phoneInput = document.getElementById('phone');
 
   // Validate Name
-  if (!nameInput.value.trim()) {
+  if (!nameInput || !nameInput.value.trim()) {
     showError('group-name', 'This field is required');
     isValid = false;
   } else {
@@ -118,7 +132,7 @@ function validateStep(step) {
 
   // Validate Email
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailInput.value.trim()) {
+  if (!emailInput || !emailInput.value.trim()) {
     showError('group-email', 'This field is required');
     isValid = false;
   } else if (!emailRegex.test(emailInput.value.trim())) {
@@ -130,7 +144,7 @@ function validateStep(step) {
   }
 
   // Validate Phone
-  if (!phoneInput.value.trim()) {
+  if (!phoneInput || !phoneInput.value.trim()) {
     showError('group-phone', 'This field is required');
     isValid = false;
   } else {
@@ -171,6 +185,16 @@ function initValidationEvents() {
       });
     }
   });
+
+  const form = document.getElementById('info-form');
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (validateStep(1)) {
+        goToStep(2);
+      }
+    });
+  }
 }
 
 // Step 2 Selection Logic & Billing Toggle
@@ -268,8 +292,8 @@ function renderSummary() {
   const planPrice = isYearly ? formData.plan.yearlyPrice : formData.plan.monthlyPrice;
   const priceSuffix = isYearly ? '/yr' : '/mo';
 
-  if (planNameElem) planNameElem.textContent = formData.plan.name + ' (' + periodText + ')';
-  if (planPriceElem) planPriceElem.textContent = '$' + planPrice + priceSuffix;
+  if (planNameElem) planNameElem.textContent = `${formData.plan.name} (${periodText})`;
+  if (planPriceElem) planPriceElem.textContent = `$${planPrice}${priceSuffix}`;
 
   // 2. Render Selected Addons
   if (addonsContainer) addonsContainer.innerHTML = '';
@@ -283,13 +307,16 @@ function renderSummary() {
 
       const addonRow = document.createElement('div');
       addonRow.className = 'summary-addon-row';
-      addonRow.innerHTML = '        <span>' + addon.name + '</span>        <span class="summary-addon-price">+$' + addonPrice + priceSuffix + '</span>';
+      addonRow.innerHTML = `
+        <span>${addon.name}</span>
+        <span class="summary-addon-price">+$${addonPrice}${priceSuffix}</span>
+      `;
       if (addonsContainer) addonsContainer.appendChild(addonRow);
     }
   });
 
   // 3. Render Total
   const totalPrice = planPrice + totalAddonsPrice;
-  if (totalTitleText) totalTitleText.textContent = 'Total (per ' + (isYearly ? 'year' : 'month') + ')';
-  if (totalPriceValue) totalPriceValue.textContent = '+$' + totalPrice + priceSuffix;
+  if (totalTitleText) totalTitleText.textContent = `Total (per ${isYearly ? 'year' : 'month'})`;
+  if (totalPriceValue) totalPriceValue.textContent = `+$${totalPrice}${priceSuffix}`;
 }
