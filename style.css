@@ -70,6 +70,10 @@ body {
   pointer-events: none;
 }
 
+.is-gone {
+  display: none;
+}
+
 fieldset {
   border: none;
 }
