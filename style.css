@@ -109,8 +109,8 @@ fieldset {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  inline-size: 2rem;
-  block-size: 2rem;
+  inline-size: clamp(1.75rem, 5vw, 2rem);
+  block-size: clamp(1.75rem, 5vw, 2rem);
   border: 1px solid var(--color-white);
   border-radius: 50%;
   color: var(--color-white);
@@ -127,7 +127,7 @@ fieldset {
 .form-content {
   background-color: var(--color-white);
   margin-inline: clamp(0.5rem, 4vw, 1rem);
-  margin-block-start: -4.5rem;
+  margin-block-start: calc(clamp(3rem, 12vw, 4.5rem) * -1);
   padding: clamp(1.5rem, 5vw, 2rem) clamp(1rem, 4vw, 1.5rem);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-card);
@@ -231,8 +231,8 @@ input.has-error {
 }
 
 .plan-icon {
-  inline-size: 2.5rem;
-  block-size: 2.5rem;
+  inline-size: clamp(2rem, 6vw, 2.5rem);
+  block-size: clamp(2rem, 6vw, 2.5rem);
   flex-shrink: 0;
 }
 
@@ -279,8 +279,8 @@ input.has-error {
 .switch {
   position: relative;
   display: inline-block;
-  inline-size: 2.375rem;
-  block-size: 1.25rem;
+  inline-size: clamp(2rem, 6vw, 2.375rem);
+  block-size: clamp(1rem, 3vw, 1.25rem);
 }
 
 .switch input {
@@ -294,7 +294,7 @@ input.has-error {
   cursor: pointer;
   inset: 0;
   background-color: var(--color-marine-blue);
-  border-radius: 1.25rem;
+  border-radius: clamp(1rem, 3vw, 1.25rem);
 }
 
 .slider::before {
@@ -309,7 +309,7 @@ input.has-error {
 }
 
 input:checked + .slider::before {
-  transform: translateX(1.125rem);
+  transform: translateX(calc(100% + 0.375rem));
 }
 
 .addons-list {
@@ -451,7 +451,7 @@ input:checked + .slider::before {
 .text-center p {
   font-size: var(--font-size-base);
   line-height: 1.5;
-  max-inline-size: 28rem;
+  max-inline-size: min(28rem, 80%);
   margin-inline: auto;
 }
 
