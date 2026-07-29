@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Frontend Mentor | Multifomr-step form</title>
-  
+  <title>Frontend Mentor | Multi-step form</title>
+
   <!-- Font Ubuntu dari Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+<base target="_blank">
 </head>
 <body>
 
@@ -77,6 +78,8 @@
             </div>
             <input type="tel" id="phone" placeholder="e.g. +1 234 567 890">
           </div>
+
+          <button type="submit" class="sr-only">Submit personal info</button>
         </form>
       </section>
 
@@ -91,7 +94,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 12h4"/><path d="M8 10v4"/><circle cx="17" cy="10" r="1"/><circle cx="15" cy="13" r="1"/></svg>
             </div>
             <div class="plan-info">
-              <h3>Arcade</h3>
+              <h2>Arcade</h2>
               <p class="plan-price" data-monthly="$9/mo" data-yearly="$90/yr">$9/mo</p>
               <p class="bonus-text" style="display: none;">2 months free</p>
             </div>
@@ -102,7 +105,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="12" x2="10" y2="12"/><line x1="8" y1="10" x2="8" y2="14"/><circle cx="15" cy="11" r="1"/><circle cx="18" cy="13" r="1"/><rect x="2" y="6" width="20" height="12" rx="2"/></svg>
             </div>
             <div class="plan-info">
-              <h3>Advanced</h3>
+              <h2>Advanced</h2>
               <p class="plan-price" data-monthly="$12/mo" data-yearly="$120/yr">$12/mo</p>
               <p class="bonus-text" style="display: none;">2 months free</p>
             </div>
@@ -113,7 +116,7 @@
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/><path d="M18 12h4"/><path d="M20 10v4"/></svg>
             </div>
             <div class="plan-info">
-              <h3>Pro</h3>
+              <h2>Pro</h2>
               <p class="plan-price" data-monthly="$15/mo" data-yearly="$150/yr">$15/mo</p>
               <p class="bonus-text" style="display: none;">2 months free</p>
             </div>
@@ -123,7 +126,7 @@
         <div class="toggle-container">
           <span class="toggle-option active" id="text-monthly">Monthly</span>
           <label class="switch">
-            <input type="checkbox" id="billing-toggle">
+            <input type="checkbox" id="billing-toggle" aria-label="Toggle between monthly and yearly billing">
             <span class="slider"></span>
           </label>
           <span class="toggle-option" id="text-yearly">Yearly</span>
@@ -138,9 +141,9 @@
         <div class="addons-list">
           <div class="addon-card selected" data-addon="service">
             <div class="addon-left">
-              <input type="checkbox" class="addon-checkbox" checked>
+              <input type="checkbox" class="addon-checkbox" checked aria-label="Online service add-on">
               <div class="addon-info">
-                <h3>Online service</h3>
+                <h2>Online service</h2>
                 <p>Access to multiplayer games</p>
               </div>
             </div>
@@ -149,9 +152,9 @@
 
           <div class="addon-card selected" data-addon="storage">
             <div class="addon-left">
-              <input type="checkbox" class="addon-checkbox" checked>
+              <input type="checkbox" class="addon-checkbox" checked aria-label="Larger storage add-on">
               <div class="addon-info">
-                <h3>Larger storage</h3>
+                <h2>Larger storage</h2>
                 <p>Extra 1TB of cloud save</p>
               </div>
             </div>
@@ -160,9 +163,9 @@
 
           <div class="addon-card" data-addon="profile">
             <div class="addon-left">
-              <input type="checkbox" class="addon-checkbox">
+              <input type="checkbox" class="addon-checkbox" aria-label="Customizable profile add-on">
               <div class="addon-info">
-                <h3>Customizable Profile</h3>
+                <h2>Customizable Profile</h2>
                 <p>Custom theme on your profile</p>
               </div>
             </div>
@@ -179,7 +182,7 @@
         <div class="summary-box">
           <div class="summary-main">
             <div class="summary-plan">
-              <h3 id="summary-plan-name">Arcade (Monthly)</h3>
+              <h2 id="summary-plan-name">Arcade (Monthly)</h2>
               <button type="button" class="btn-change" id="btn-change-plan">Change</button>
             </div>
             <span class="summary-plan-price" id="summary-plan-price">$9/mo</span>
@@ -199,7 +202,7 @@
       <!-- Step 5: Thank You -->
       <section class="step-panel" id="step-5">
         <div class="thank-you-panel">
-          <div class="thank-you-icon">✓</div>
+          <div class="thank-you-icon">&#10003;</div>
           <h1>Thank you!</h1>
           <p class="subtitle">
             Thanks for confirming your subscription! We hope you have fun using our platform. If you ever need support, please feel free to email us at support@loremgaming.com.
@@ -209,7 +212,7 @@
 
       <!-- Navigation Buttons -->
       <div class="button-row" id="navigation-bar">
-        <button type="button" class="btn-back" id="btn-back" style="visibility: hidden;">Go Back</button>
+        <button type="button" class="btn-back is-hidden" id="btn-back">Go Back</button>
         <button type="submit" class="btn-next" id="btn-next">Next Step</button>
       </div>
     </main>
